@@ -1,8 +1,12 @@
 ## create express app
 
-- npm i -g express
+- npm i -g express nodemon
 - express projectname
-- npm install express-ejs-layouts --save
+- setup mongodb in machine
+- update connection string in app.js file
+- execute nodemon start command in the root of the application to start backend server (http://localhost:3000/graphqlapi/graphql)
+- go to frontend directory in command line
+- execute ng serve command to start frontend application (http://localhost:4200/)
 
 ## GraphQL
 
