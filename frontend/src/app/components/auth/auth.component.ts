@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { APPLICATION_CONSTANTS } from '../../constants/app.constants';
+import { LOGIN_KEY, StorageService } from './../../services/storage.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-auth',
@@ -10,6 +13,7 @@ import { APPLICATION_CONSTANTS } from '../../constants/app.constants';
   styleUrl: './auth.component.css',
 })
 export class AuthComponent implements OnInit {
+  constructor(private storageServiceObj: StorageService, private router: Router) {}
   user = {
     email: '',
     password: '',
@@ -17,6 +21,7 @@ export class AuthComponent implements OnInit {
   isSignup = true;
 
   ngOnInit() {
+    console.log(this.storageServiceObj);
   }
 
   switchSigninSignup() {
@@ -32,7 +37,7 @@ export class AuthComponent implements OnInit {
       email
       }
       }
-      `
+      `,
     };
     if (!this.isSignup) {
       request = {
@@ -44,7 +49,7 @@ export class AuthComponent implements OnInit {
         tokenExpiration
         }
         }
-        `
+        `,
       };
     }
     fetch(APPLICATION_CONSTANTS.SERVICE_URL, {
@@ -53,15 +58,29 @@ export class AuthComponent implements OnInit {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then(res => {
-      if (res.status !== 200 && res.status !== 201) {
-        throw new Error('Failed');
-      }
-      return res.json();
-    }).then(resBody => {
-      console.log(resBody);
-    }).catch(err => {
-      console.log(err);
-    });
+    })
+      .then((res) => {
+        if (res.status !== 200 && res.status !== 201) {
+          throw new Error('Failed');
+        }
+        return res.json();
+      })
+      .then((resBody) => {
+        console.log(resBody);
+        if (!this.isSignup) {
+          if (resBody && resBody.data && resBody.data.login) {
+            const { userId, token, tokenExpiration } = resBody.data.login;
+            console.log(userId, token, tokenExpiration);
+            this.storageServiceObj.setData(
+              LOGIN_KEY,
+              JSON.stringify(resBody.data.login)
+            );
+            this.router.navigate(['/home']);
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
