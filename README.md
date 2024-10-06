@@ -1,7 +1,7 @@
-## create express app
+## How to use application
 
-- npm i -g express nodemon
-- express projectname
+- install node js in machine
+- execute command npm i -g nodemon
 - setup mongodb in machine
 - update connection string in app.js file
 - execute nodemon start command in the root of the application to start backend server (http://localhost:3000/graphqlapi/graphql)
