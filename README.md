@@ -530,3 +530,6 @@ Create frontend application in angular to consume graphql api's.
 
 - Create auth component and consume login and signup api.
 - implement login/logout feature in angular app.
+
+- Create another angular application (non standalone components) and move all the features
+- To create non standalone component `ng new projectname --no-standalone`
