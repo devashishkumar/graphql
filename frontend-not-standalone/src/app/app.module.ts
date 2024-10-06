@@ -10,6 +10,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { BookingsComponent } from './components/bookings/bookings.component';
 import { EventsComponent } from './components/events/events.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
