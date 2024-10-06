@@ -1,8 +1,7 @@
 ## How to use application
 
-- install node js in machine
+- install node js and mongodb in machine
 - execute command npm i -g nodemon
-- setup mongodb in machine
 - update connection string in app.js file
 - execute nodemon start command in the root of the application to start backend server (http://localhost:3000/graphqlapi/graphql)
 - go to frontend directory in command line
