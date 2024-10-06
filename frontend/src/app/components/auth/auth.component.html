@@ -21,8 +21,16 @@
       [(ngModel)]="user.password"
     />
   </div>
-  <div class="form-actions">
-    <button type="button" class="btn btn-primary" (click)="switchSigninSignup()">Switch to {{ isSignup == true ? 'Signin' : 'Signup' }}</button>
-    <button type="submit" class="btn btn-primary" (click)="signup()">{{ isSignup == true ? 'Signup' : 'Signin' }}</button>
-  </div>
+  <div class="form-group form-check"></div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    style="margin-right: 10px"
+    (click)="switchSigninSignup()"
+  >
+    Switch to {{ isSignup == true ? "Signin" : "Signup" }}
+  </button>
+  <button type="submit" class="btn btn-primary" (click)="signup()">
+    {{ isSignup == true ? "Signup" : "Signin" }}
+  </button>
 </form>
